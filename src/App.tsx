@@ -1,6 +1,6 @@
 export default () => {
     return (
-        <div className="App">
+        <div className="app">
             <p className="hello">Hello World</p>
         </div>
     );
