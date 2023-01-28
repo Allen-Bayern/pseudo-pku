@@ -1,5 +1,7 @@
+import './styles/index.less';
+
 export default () => (
-    <>
-        <p className="hi">Sir, this way</p>
-    </>
+    <div className="hi-root">
+        <p className="hi">Hello World</p>
+    </div>
 );
