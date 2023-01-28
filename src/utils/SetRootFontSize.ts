@@ -3,9 +3,8 @@ const UI_DESIGN = 375;
 
 function setRealRoot(): void {
     const realWidth = document.documentElement.clientWidth;
-
-    
     const rawRatio = realWidth / UI_DESIGN;
+    
     let realRatio: number = rawRatio;
 
     // 手机宽度只适应到375到750，因此要限值
