@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import { RouterProvider } from "react-router-dom";
+import { router } from './router';
 import '@/styles/index.less';
 
 const rootDOM = document.querySelector('#root');
@@ -8,6 +9,6 @@ const rootReact = rootDOM && ReactDOM.createRoot(rootDOM);
 
 rootReact?.render(
     <React.StrictMode>
-        <App />
+        <RouterProvider router={router} />
     </React.StrictMode>,
 );
