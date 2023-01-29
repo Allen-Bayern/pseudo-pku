@@ -1,4 +1,4 @@
-const baseFontSize = 16;
+const baseFontSize = 37.5;
 const UI_DESIGN = 375;
 
 function setRealRoot(): void {
