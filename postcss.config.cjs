@@ -3,7 +3,8 @@ module.exports = {
         require('autoprefixer'),
         require('postcss-pxtorem')({
             propList: ['*'],
-            mediaQuery: true
+            mediaQuery: true,
+            exclude: '',
         }),
     ],
 };

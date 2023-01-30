@@ -1,0 +1,97 @@
+@import '@/styles/variants.less';
+.login-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    .pku-logo {
+        text-align: center;
+        width: 100%;
+        margin: 20px 0;
+        .pku-link {
+            text-decoration: none;
+            .pku-logo-img {
+                height: 60px;
+            }
+        }
+    }
+    .login-tab {
+        width: 100%;
+        .pane-title {
+            .rv-tab__text {
+                font-size: 18px;
+            }
+        }
+        .qr-code {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            &-tip {
+                margin: 20px 0 10px 0;
+                color: #777;
+                .pku-app {
+                    color: @pku-red;
+                }
+            }
+            &-image {
+                margin: 20px 0;
+                max-width: 50%;
+                max-height: 50%;
+            }
+        }
+    }
+    .rv-form {
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+        margin-top: 10px;
+        &__footer {
+            width: calc(100% - 30px);
+            margin: 10px 15px 0 15px;
+            display: flex;
+            flex-direction: column;
+            .confirm-bottom {
+                .remember-and-forget {
+                    display: flex;
+                    font-size: 14px;
+                    color: @pku-red;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 0 4px;
+                    .rv-checkbox {
+                        &__label {
+                            color: @pku-red;
+                        }
+                    }
+                    .forget {
+                        &:hover {
+                            cursor: pointer;
+                        }
+                    }
+                } 
+                .login-button {
+                    margin-top: 12px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .pku-scene {
+        margin-top: 16px;
+        display: flex;
+        justify-content: center;
+        &-image {
+            max-width: 75%;
+            max-height: 75%;
+        }
+    }
+    .bottom {
+        margin-top: 16px;
+        color: #544c4a;
+        font-family: Arial, "Microsoft YaHei";
+        font-size: 14px;
+        &-info {
+            padding: 4px 10px;
+        }
+    }
+}
