@@ -24,7 +24,7 @@ export const defaultRequest = async <T extends object, U = unknown>(
         json
     } = response;
 
-    const consequence = json();
+    const consequence = await json();
 
     if (status >= 300 && status !== 304) {
         const reason = `The request meets some mistakes! The status code is ${status}`;
@@ -41,5 +41,5 @@ export const defaultRequest = async <T extends object, U = unknown>(
         console.log(`The status code is ${status}, but the request is not an error. Try to solve the ${status} problem`);
     }
     
-    return await (consequence as U);
+    return (consequence as U);
 }
