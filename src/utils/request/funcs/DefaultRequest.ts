@@ -1,9 +1,9 @@
 import { basicRequest } from "./BasicRequest";
 
-export const defaultRequest = async <T extends object, U = unknown>(
+export const defaultRequest = async <T extends object = any, U = unknown>(
     url: string,
     options: InputOptions<T> = {},
-    onResponseError?: (status : number) => void
+    onStatusError?: (status : number) => void
 ) => {
     /* 
         * Give fetch API a default timeout 2000
@@ -28,7 +28,7 @@ export const defaultRequest = async <T extends object, U = unknown>(
 
     if (status >= 300 && status !== 304) {
         const reason = `The request meets some mistakes! The status code is ${status}`;
-        onResponseError && onResponseError(status);
+        onStatusError && onStatusError(status);
         return Promise.reject<{
             reason: string;
             consequence: unknown;
