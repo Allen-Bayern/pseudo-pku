@@ -26,7 +26,7 @@ export const defaultRequest = async <T extends object, U = unknown>(
 
     const consequence = json();
 
-    if (status < 300) {
+    if (status >= 300 && status !== 304) {
         const reason = `The request meets some mistakes! The status code is ${status}`;
         onResponseError && onResponseError(status);
         return Promise.reject<{
