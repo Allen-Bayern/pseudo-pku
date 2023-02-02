@@ -1,9 +1,11 @@
-import './styles/index.less';
 import { Button } from 'react-vant';
+import './styles/index.less';
 
-export default () => (
-    <div className="hi-root">
-        <p className="hi">Hello World</p>
-        <Button type='primary'>Btn</Button>
-    </div>
-);
+export default () => {
+    return (
+        <div className="hi-root">
+            <p className="hi">Hello World</p>
+            <Button type='primary'>Btn</Button>
+        </div>
+    );
+};
