@@ -5,7 +5,14 @@ export const defaultRequest = async <T extends object, U = unknown>(
     options: InputOptions<T> = {},
     onResponseError?: (status : number) => void
 ) => {
-    // Give default timeout 2000
+    /* 
+        * Give fetch API a default timeout 2000
+        * 
+        * To configure timeout in fetch API
+        * see this article: https://dmitripavlutin.com/timeout-fetch-request/
+        * 
+        * 给fetch API设置timeout，详见: https://dmitripavlutin.com/timeout-fetch-request/
+    */
     const { timeout } = options;
     !timeout && Object.assign(options, {
         timeout: 2000,
