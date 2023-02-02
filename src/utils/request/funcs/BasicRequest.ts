@@ -29,7 +29,6 @@ export const basicRequest = async <T extends object>(
         Object.assign(init, { signal });
     }
 
-    
     const response = await fetch(requestedURL, init);
     timer && clearTimeout(timer);
 
