@@ -2,11 +2,16 @@ import { basicRequest } from "./BasicRequest";
 
 export const defaultRequest = async <T extends object, U = unknown>(
     url: string,
-    options?: InputOptions<T>,
+    options: InputOptions<T> = {},
     onResponseError?: (status : number) => void
 ) => {
-    const { response } = await basicRequest(url, options);
+    // Give default timeout 2000
+    const { timeout } = options;
+    !timeout && Object.assign(options, {
+        timeout: 2000,
+    });
 
+    const { response } = await basicRequest(url, options);
     const {
         status,
         json
