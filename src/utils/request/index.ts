@@ -1,0 +1,1 @@
+import { basicRequest } from "./funcs/BasicRequest";
