@@ -41,8 +41,10 @@ export const handleOptions = <T extends object> (options: InputOptions<T> = {}):
    const { params } = options;
    let urlAppend = '';
    if (params !== void 0) {
-        if (isGet) urlAppend = qs.stringify(params);
-        else {
+        if (isGet) {
+            urlAppend = qs.stringify(params);
+            init.body = void 0;
+        } else {
             if (['json', 'text'].includes(returnType)) {
                 init.body = JSON.stringify(params);
             } else {
