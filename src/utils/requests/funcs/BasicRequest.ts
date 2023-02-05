@@ -21,8 +21,8 @@ export const basicRequest = async <T extends object>(
     const timer = setTimeout(() => {
         abortRequest(controller);
     }, (timeout && timeout > 2000) ? timeout : 2000);
-    
-    const { signal} = controller;
+
+    const { signal } = controller;
     Object.assign(init, { signal });
 
     const response = await fetch(requestedURL, init);
