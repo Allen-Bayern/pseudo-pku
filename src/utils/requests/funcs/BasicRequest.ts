@@ -16,15 +16,13 @@ export const basicRequest = async <T extends object>(
     } = handleOptions(options);
 
     const requestedURL = urlAppend ? `${url}?${urlAppend}` : url;
-
-    let signal: AbortSignal | null = null;
     
     const controller = createController();
     const timer = setTimeout(() => {
         abortRequest(controller);
     }, (timeout && timeout > 2000) ? timeout : 2000);
-    const { signal: abortSignal } = controller;
-    signal = abortSignal;
+    
+    const { signal} = controller;
     Object.assign(init, { signal });
 
     const response = await fetch(requestedURL, init);
