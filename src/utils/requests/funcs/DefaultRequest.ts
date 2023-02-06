@@ -19,7 +19,7 @@ export const defaultRequest = async <T extends object = any, U = unknown>(
     */
     const { timeout } = options;
 
-    let signal: AbortSignal | null = null;
+    let signal: AbortSignal;
     let timer: ReturnType<typeof setTimeout> | null = null;
 
     const realTimeout = timeout && timeout > 2000 ? timeout : 2000;
@@ -28,7 +28,11 @@ export const defaultRequest = async <T extends object = any, U = unknown>(
     else {
         const controller = createController();
         timer = setTimeout(() => { abortRequest(controller); }, realTimeout);
+        const { signal: abortSignal } = controller;
+        signal = abortSignal;
     }
+
+    Object.assign(options, { signal });
 
     const { response } = await basicRequest(url, options);
     timer && clearTimeout(timer);
