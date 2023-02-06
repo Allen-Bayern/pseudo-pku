@@ -1,4 +1,8 @@
-import { basicRequest } from "./BasicRequest";
+import { basicRequest } from './BasicRequest';
+import {
+    createController,
+    abortRequest
+} from '../tools/HandleController';
 
 export const defaultRequest = async <T extends object = any, U = unknown>(
     url: string,
@@ -14,11 +18,20 @@ export const defaultRequest = async <T extends object = any, U = unknown>(
         * 给fetch API设置timeout，详见: https://dmitripavlutin.com/timeout-fetch-request/
     */
     const { timeout } = options;
-    !timeout && Object.assign(options, {
-        timeout: 2000,
-    });
+
+    let signal: AbortSignal | null = null;
+    let timer: ReturnType<typeof setTimeout> | null = null;
+
+    const realTimeout = timeout && timeout > 2000 ? timeout : 2000;
+
+    if (AbortSignal.timeout) signal = AbortSignal.timeout(realTimeout);
+    else {
+        const controller = createController();
+        timer = setTimeout(() => { abortRequest(controller); }, realTimeout);
+    }
 
     const { response } = await basicRequest(url, options);
+    timer && clearTimeout(timer);
     const {
         status,
         json
@@ -42,4 +55,4 @@ export const defaultRequest = async <T extends object = any, U = unknown>(
     }
     
     return (consequence as U);
-}
+};

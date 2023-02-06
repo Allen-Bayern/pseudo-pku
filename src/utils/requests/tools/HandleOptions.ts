@@ -55,10 +55,8 @@ export const handleOptions = <T extends object> (options: InputOptions<T> = {}):
                         if (typeof gotten !== 'string' && !(gotten instanceof Blob)) {
                             (gotten as string) = String(gotten);
                         }
-                        /* 
-                            Because gotten can only be string or blob
-                        */
-                        formData.append(key, (gotten as string | Blob));
+                        
+                        formData.append(key, (gotten as string | Blob), gotten instanceof Blob ? key : void 0);
                     }
                 );
                 init.body = formData;
@@ -76,25 +74,19 @@ export const handleOptions = <T extends object> (options: InputOptions<T> = {}):
    ];
 
    const restOptions: RequestInit = JSON.parse(
-        JSON.stringify(options, Object.keys(options).filter(
-            key => !doNotAdd.includes(key as keyof InputOptions<T>)
-            )
+        JSON.stringify(options, 
+            Object.keys(options)
+                .filter(key => !doNotAdd.includes(key as keyof InputOptions<T>))
         )
    );
 
    Object.assign(init, restOptions);
 
    const { timeout } = options;
-   return timeout !== void 0 
-            ? {
-                init,
-                urlAppend,
-                returnType,
-                timeout
-            }
-            : {
-                init,
-                urlAppend,
-                returnType,
-            };
-}
+   return {
+        init,
+        urlAppend,
+        returnType,
+        timeout
+    };
+};
