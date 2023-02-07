@@ -1,8 +1,9 @@
 import { Outlet } from "react-router-dom";
 import { useState } from 'react';
-import { Search, Tabbar, TabbarItem } from 'react-vant';
+import { Search, Tabbar } from 'react-vant';
 import { InfoO, TodoListO, BullhornO, WapHomeO } from '@react-vant/icons';
 import { pkuRed } from '@/global';
+import './styles/index.less';
 
 export default () => {
     const [searchValue, setSearchValue] = useState<string>('');
@@ -18,7 +19,9 @@ export default () => {
                     placeholder="请输入"
                 />
             </div>
-            <Outlet />
+            <div className="slot">
+                <Outlet />
+            </div>
             <Tabbar>
                 <Tabbar.Item icon={<InfoO />}>
                     信息服务
