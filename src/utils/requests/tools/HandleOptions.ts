@@ -45,7 +45,14 @@ export const handleOptions = <T extends object> (options: InputOptions<T> = {}):
             urlAppend = qs.stringify(params);
             init.body = void 0;
         } else {
-            if (['json', 'text'].includes(returnType)) {
+            let isBlobInside = false;
+            for (let key in params) {
+                if (params[key] instanceof Blob) {
+                    isBlobInside = true;
+                    break ;
+                }
+            }
+            if (!isBlobInside) {
                 init.body = JSON.stringify(params);
             } else {
                 const formData = new FormData();
