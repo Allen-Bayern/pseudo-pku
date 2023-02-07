@@ -22,7 +22,7 @@ export default () => {
             <div className="slot">
                 <Outlet />
             </div>
-            <Tabbar>
+            <Tabbar activeColor={pkuRed}>
                 <Tabbar.Item icon={<InfoO />}>
                     信息服务
                 </Tabbar.Item>
